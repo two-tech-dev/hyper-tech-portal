@@ -1,0 +1,28 @@
+{
+  "slug": "jasper-wild-mcpe",
+  "title": "Jasper Wild MCPE",
+  "tagline": "A thriving Minecraft Bedrock survival server",
+  "status": "Live",
+  "date": "Dec 2025",
+  "tags": ["Gaming", "Server", "Node.js", "Minecraft"],
+  "color": "#16a34a",
+  "overview": "Jasper Wild is a custom Minecraft Bedrock Edition multiplayer server built from the ground up with a unique survival experience. It features custom terrain generation, anti-cheat systems, and a vibrant in-game economy.",
+  "problem": "Most public Bedrock servers are either poorly maintained or filled with pay-to-win mechanics. Players want a fair, fun, and community-driven survival experience.",
+  "solution": "We built a fully custom server stack using Node.js-based plugins, optimized for low-latency connections and fair gameplay. A custom admin dashboard lets us manage the economy and moderate in real-time.",
+  "techStack": [
+    { "name": "Node.js", "category": "Runtime" },
+    { "name": "PocketMine-MP", "category": "Server Software" },
+    { "name": "MySQL", "category": "Database" },
+    { "name": "PHP", "category": "Plugin Language" }
+  ],
+  "highlights": [
+    "200+ concurrent players at peak",
+    "Custom terrain biome generation",
+    "Anti-cheat engine with zero false positives",
+    "In-game economy with player shops"
+  ],
+  "links": {
+    "live": null,
+    "github": null
+  }
+}
