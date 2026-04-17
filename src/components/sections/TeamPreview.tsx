@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function TeamPreview() {
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-24 relative overflow-hidden" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 max-w-5xl relative">

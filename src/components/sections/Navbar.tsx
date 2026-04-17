@@ -20,7 +20,7 @@ export function Navbar() {
         <>
             <nav className="fixed top-0 left-0 right-0 z-50">
                 <div className="mx-auto mt-3 max-w-5xl px-4">
-                    <div className="flex items-center justify-between h-14 rounded-2xl border border-white/8 bg-background/70 backdrop-blur-xl shadow-xl shadow-black/40 px-4">
+                    <div className="flex items-center justify-between h-14 rounded-2xl border border-white/8 bg-background/80 backdrop-blur-md shadow-xl shadow-black/40 px-4">
                         {/* Logo wordmark */}
                         <Link
                             href="/"

@@ -4,12 +4,12 @@ import { ArrowRight, Mail } from "lucide-react";
 
 export function CTA() {
     return (
-        <section className="py-24">
+        <section className="py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 400px' }}>
             <div className="container mx-auto px-4 max-w-5xl">
                 <div className="animate-fade-in-up-view relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/12 via-card to-card p-10 md:p-16 text-center">
-                    {/* Decorative glows */}
-                    <div className="absolute -top-24 -left-24 size-64 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
-                    <div className="absolute -bottom-24 -right-24 size-64 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+                    {/* Decorative glows — hidden on mobile for perf */}
+                    <div className="hidden md:block absolute -top-24 -left-24 size-64 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
+                    <div className="hidden md:block absolute -bottom-24 -right-24 size-64 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
 
                     <div className="relative z-10 flex flex-col items-center gap-6">
                         <p className="text-primary font-semibold text-sm tracking-[0.15em] uppercase">

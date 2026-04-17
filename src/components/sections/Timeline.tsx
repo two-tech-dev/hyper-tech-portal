@@ -27,9 +27,9 @@ const milestones = [
 
 export function Timeline() {
     return (
-        <section className="relative py-20 md:py-28 overflow-hidden">
-            {/* Atmosphere */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
+        <section className="relative py-20 md:py-28 overflow-hidden" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
+            {/* Atmosphere — smaller blur on mobile */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] rounded-full bg-primary/5 blur-[60px] md:blur-[120px] pointer-events-none" />
 
             <div className="relative container mx-auto px-4 max-w-4xl">
                 {/* Header */}
@@ -185,7 +185,7 @@ function MilestoneCard({
                         : "right-0 translate-x-full bg-gradient-to-r from-primary/50 to-transparent"
                 }`}
             />
-            <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-card/80 backdrop-blur-sm px-4 py-3.5 shadow-xl shadow-black/30 hover:border-primary/30 hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-0.5">
+            <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-card px-4 py-3.5 shadow-xl shadow-black/30 hover:border-primary/30 hover:shadow-primary/10 transition-colors duration-300">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
                 <div
                     className={`flex items-center gap-3 ${isLeft ? "" : "flex-row-reverse"}`}

@@ -6,25 +6,25 @@ import Link from "next/link";
 export function Hero() {
     return (
         <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-            {/* Dot grid */}
+            {/* Dot grid — hidden on mobile for GPU perf */}
             <div
-                className="absolute inset-0 opacity-[0.18]"
+                className="absolute inset-0 opacity-[0.18] hidden md:block"
                 style={{
                     backgroundImage:
                         "radial-gradient(oklch(0.575 0.23 25 / 0.6) 1px, transparent 1px)",
                     backgroundSize: "28px 28px",
                 }}
             />
-            {/* Red glow top */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 size-[500px] md:size-[600px] rounded-full bg-primary/10 blur-[120px] md:blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 size-[300px] md:size-[400px] rounded-full bg-primary/6 blur-[80px] md:blur-[100px] pointer-events-none" />
+            {/* Red glow top — smaller blur on mobile for GPU perf */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 size-[300px] md:size-[600px] rounded-full bg-primary/10 blur-[60px] md:blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 size-[200px] md:size-[400px] rounded-full bg-primary/6 blur-[40px] md:blur-[100px] pointer-events-none" />
 
             <div className="relative z-10 container mx-auto px-5 flex flex-col items-center text-center pt-24 pb-16 md:pt-28 md:pb-24 gap-6 md:gap-8 max-w-5xl">
                 {/* Pill badge */}
                 <div className="animate-fade-in-up">
                     <Badge
                         variant="outline"
-                        className="rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium border-primary/30 text-primary bg-primary/8 backdrop-blur-sm gap-1.5"
+                        className="rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium border-primary/30 text-primary bg-primary/8 gap-1.5"
                     >
                         <Zap className="size-3 fill-primary" />
                         2Tech – One team, One dream

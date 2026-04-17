@@ -7,7 +7,7 @@ export function ProjectsHighlight() {
     const featured = projects.slice(0, 2);
 
     return (
-        <section className="py-24 relative">
+        <section className="py-24 relative" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
             <div className="container mx-auto px-4 max-w-5xl">
                 {/* Header */}
                 <div className="animate-fade-in-up-view flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
