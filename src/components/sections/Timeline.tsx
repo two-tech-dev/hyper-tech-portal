@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const milestones = [
     {
         date: "10/12/2025",
@@ -37,13 +33,7 @@ export function Timeline() {
 
             <div className="relative container mx-auto px-4 max-w-4xl">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-14 md:mb-20"
-                >
+                <div className="animate-fade-in-up-view text-center mb-14 md:mb-20">
                     <p className="text-primary font-semibold text-sm tracking-[0.15em] uppercase mb-3">
                         Our Story
                     </p>
@@ -53,7 +43,7 @@ export function Timeline() {
                             2Tech
                         </span>
                     </h2>
-                </motion.div>
+                </div>
 
                 {/* ── MOBILE: single column ─────────────────────── */}
                 <div className="flex flex-col gap-0 md:hidden relative">
@@ -61,13 +51,10 @@ export function Timeline() {
                     <div className="absolute left-5 top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
 
                     {milestones.map((item, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-40px" }}
-                            transition={{ duration: 0.4, delay: i * 0.08 }}
-                            className="relative flex items-start gap-5 pb-8 last:pb-0 pl-12"
+                            className="animate-fade-in-up-view relative flex items-start gap-5 pb-8 last:pb-0 pl-12"
+                            style={{ animationDelay: `${i * 80}ms` }}
                         >
                             {/* Dot */}
                             <div className="absolute left-[14px] top-3.5">
@@ -91,7 +78,7 @@ export function Timeline() {
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
@@ -99,12 +86,8 @@ export function Timeline() {
                 <div className="hidden md:block relative">
                     {/* Central axis */}
                     <div className="absolute left-1/2 top-4 bottom-4 w-px -translate-x-1/2 overflow-hidden">
-                        <motion.div
-                            initial={{ scaleY: 0, originY: "top" }}
-                            whileInView={{ scaleY: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: "easeInOut" }}
-                            className="h-full w-full bg-gradient-to-b from-transparent via-primary/50 to-transparent"
+                        <div
+                            className="h-full w-full bg-gradient-to-b from-transparent via-primary/50 to-transparent animate-scale-y-in"
                             style={{ transformOrigin: "top" }}
                         />
                     </div>
@@ -113,20 +96,10 @@ export function Timeline() {
                         {milestones.map((item, i) => {
                             const isRight = item.side === "right";
                             return (
-                                <motion.div
+                                <div
                                     key={i}
-                                    initial={{
-                                        opacity: 0,
-                                        x: isRight ? 50 : -50,
-                                    }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-60px" }}
-                                    transition={{
-                                        duration: 0.5,
-                                        delay: i * 0.1,
-                                        ease: "easeOut",
-                                    }}
-                                    className="relative flex items-center min-h-[110px]"
+                                    className={`animate-fade-in-up-view relative flex items-center min-h-[110px] ${isRight ? "animate-slide-from-right" : "animate-slide-from-left"}`}
+                                    style={{ animationDelay: `${i * 100}ms` }}
                                 >
                                     <div className="w-1/2 pr-12 flex justify-end">
                                         {isRight ? (
@@ -147,18 +120,11 @@ export function Timeline() {
                                     <div className="absolute left-1/2 -translate-x-1/2 z-10">
                                         <div className="relative flex items-center justify-center">
                                             <div className="absolute inset-0 rounded-full bg-primary/30 blur-md scale-150" />
-                                            <motion.div
-                                                animate={{
-                                                    scale: [1, 1.6, 1],
-                                                    opacity: [0.5, 0, 0.5],
+                                            <div
+                                                className="absolute inset-0 rounded-full border border-primary/60 animate-ripple"
+                                                style={{
+                                                    animationDelay: `${i * 400}ms`,
                                                 }}
-                                                transition={{
-                                                    duration: 2.5,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut",
-                                                    delay: i * 0.4,
-                                                }}
-                                                className="absolute inset-0 rounded-full border border-primary/60"
                                             />
                                             <div className="relative size-4 rounded-full bg-primary shadow-lg shadow-primary/60 border-2 border-background" />
                                         </div>
@@ -178,7 +144,7 @@ export function Timeline() {
                                             />
                                         )}
                                     </div>
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>

@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Zap } from "lucide-react";
@@ -24,11 +21,7 @@ export function Hero() {
 
             <div className="relative z-10 container mx-auto px-5 flex flex-col items-center text-center pt-24 pb-16 md:pt-28 md:pb-24 gap-6 md:gap-8 max-w-5xl">
                 {/* Pill badge */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
+                <div className="animate-fade-in-up">
                     <Badge
                         variant="outline"
                         className="rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium border-primary/30 text-primary bg-primary/8 backdrop-blur-sm gap-1.5"
@@ -36,41 +29,26 @@ export function Hero() {
                         <Zap className="size-3 fill-primary" />
                         2Tech – One team, One dream
                     </Badge>
-                </motion.div>
+                </div>
 
                 {/* Headline */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, delay: 0.1 }}
-                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.08] text-foreground"
-                >
+                <h1 className="animate-fade-in-up [animation-delay:100ms] text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.08] text-foreground">
                     We build{" "}
                     <span className="bg-gradient-to-br from-primary via-red-400 to-orange-400 bg-clip-text text-transparent">
                         digital
                     </span>
                     <br />
                     experiences
-                </motion.h1>
+                </h1>
 
                 {/* Sub-headline */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="max-w-sm md:max-w-lg text-sm md:text-lg text-muted-foreground leading-relaxed"
-                >
+                <p className="animate-fade-in-up [animation-delay:200ms] max-w-sm md:max-w-lg text-sm md:text-lg text-muted-foreground leading-relaxed">
                     From gaming servers to payment gateways — we craft fast,
                     beautiful, and purposeful products that resonate.
-                </motion.p>
+                </p>
 
                 {/* CTA Buttons */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-xs sm:max-w-none"
-                >
+                <div className="animate-fade-in-up [animation-delay:300ms] flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-3 w-full max-w-xs sm:max-w-none">
                     <Button
                         size="lg"
                         className="h-11 px-8 rounded-xl font-semibold shadow-xl shadow-primary/30 bg-primary hover:bg-primary/90"
@@ -86,15 +64,10 @@ export function Hero() {
                     >
                         Meet the Team
                     </Button>
-                </motion.div>
+                </div>
 
                 {/* Stats row */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.45 }}
-                    className="flex justify-center gap-8 md:gap-10 pt-4 border-t border-white/6 w-full max-w-xs"
-                >
+                <div className="animate-fade-in-up [animation-delay:450ms] flex justify-center gap-8 md:gap-10 pt-4 border-t border-white/6 w-full max-w-xs">
                     {[
                         { value: "4+", label: "Projects" },
                         { value: "2025", label: "Founded" },
@@ -112,7 +85,7 @@ export function Hero() {
                             </span>
                         </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
 
             {/* Bottom fade */}

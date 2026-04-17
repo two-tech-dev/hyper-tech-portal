@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
     { href: "/projects", label: "Projects" },
@@ -26,11 +27,14 @@ export function Navbar() {
                             className="flex items-center gap-2"
                             onClick={() => setOpen(false)}
                         >
-                            <img
+                            <Image
                                 src="/logo-2tech.png"
                                 alt="2Tech icon"
+                                width={32}
+                                height={32}
                                 className="size-8 object-contain rounded-lg"
                                 style={{ mixBlendMode: "screen" }}
+                                priority
                             />
                             <span className="font-bold text-[15px] tracking-tight text-foreground">
                                 2Tech

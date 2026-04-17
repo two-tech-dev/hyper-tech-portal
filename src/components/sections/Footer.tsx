@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
     { label: "Projects", href: "/projects" },
@@ -40,9 +41,11 @@ export function Footer() {
                     {/* Brand */}
                     <div className="flex flex-col gap-4 max-w-xs">
                         <Link href="/">
-                            <img
+                            <Image
                                 src="/logo.png"
                                 alt="2Tech Studio"
+                                width={120}
+                                height={36}
                                 className="h-9 w-auto object-contain"
                                 style={{ mixBlendMode: "screen" }}
                             />
