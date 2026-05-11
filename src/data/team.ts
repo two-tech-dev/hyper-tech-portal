@@ -49,7 +49,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Rezn1r",
     role: "Member",
-    avatar: "https://cdn.rydenprotocol.xyz/553307145_1335093674835927_4180731484480884994_n.jpg",
+    avatar: "https://avatars.githubusercontent.com/u/110711560?v=4",
     bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
     skills: ["Development"],
   },
