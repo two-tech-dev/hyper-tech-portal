@@ -46,6 +46,13 @@ export const teamMembers: TeamMember[] = [
     bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
     skills: ["Development"],
   },
+  {
+    name: "Rezn1r",
+    role: "Member",
+    avatar: "https://cdn.rydenprotocol.xyz/553307145_1335093674835927_4180731484480884994_n.jpg",
+    bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
+    skills: ["Development"],
+  },
 ];
 
 export const roleOrder: Record<string, number> = {
