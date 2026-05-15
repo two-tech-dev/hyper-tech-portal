@@ -8,6 +8,7 @@ export interface TeamMember {
   // Optional extras — add as needed
   bio?: string;
   skills?: string[];
+  githubUsername?: string;
 }
 
 export const teamMembers: TeamMember[] = [
@@ -15,43 +16,45 @@ export const teamMembers: TeamMember[] = [
     name: "Nguyễn Viết Hiếu",
     role: "Founder",
     avatar: "https://cdn.rydenprotocol.xyz/588467093_122233398140155885_6755016248776118242_n.jpg",
-    bio: "Người sáng lập 2Tech, đam mê xây dựng sản phẩm kỹ thuật số.",
+    bio: "Founder of 2Tech, passionate about building digital products.",
     skills: ["Leadership", "Product", "Full-Stack"],
+    githubUsername: "harryitz",
   },
   {
     name: "Trần Thiên Nam",
     role: "Co-Founder",
-    avatar: "https://cdn.rydenprotocol.xyz/294261853_854954728798061_659796097419169387_n.jpg",
-    bio: "Đồng sáng lập, chịu trách nhiệm chiến lược và phát triển.",
+    avatar: "https://avatars.githubusercontent.com/u/111500380?s=96&v=4",
+    bio: "Co-founder, responsible for strategy and development.",
     skills: ["Strategy", "Backend", "DevOps"],
   },
   {
     name: "Phùng Trung Nhân",
     role: "Moderator",
-    avatar: "https://cdn.rydenprotocol.xyz/591268000_846618858121080_4513224150407081793_n.jpg",
-    bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
+    avatar: "https://avatars.githubusercontent.com/u/148054296?s=96&v=4",
+    bio: "Core member, contributing to team projects.",
     skills: ["Development"],
   },
   {
     name: "Trần Huy Bảo",
     role: "Operator",
-    avatar: "https://cdn.rydenprotocol.xyz/215422899.jpg",
-    bio: "Vận hành và điều phối các dự án của studio.",
+    avatar: "https://avatars.githubusercontent.com/u/215422899?s=96&v=4",
+    bio: "Operating and coordinating studio projects.",
     skills: ["Operations", "Management"],
   },
   {
     name: "Trần Nhựt Phát",
     role: "Member",
-    avatar: "https://cdn.rydenprotocol.xyz/553307145_1335093674835927_4180731484480884994_n.jpg",
-    bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
+    avatar: "https://avatars.githubusercontent.com/u/58399779?s=96&v=4",
+    bio: "Core member, contributing to team projects.",
     skills: ["Development"],
   },
   {
     name: "Rezn1r",
     role: "Member",
     avatar: "https://avatars.githubusercontent.com/u/110711560?v=4",
-    bio: "Thành viên chính, đóng góp vào các dự án của nhóm.",
+    bio: "Core member, contributing to team projects.",
     skills: ["Development"],
+    githubUsername: "Rezn1r",
   },
 ];
 

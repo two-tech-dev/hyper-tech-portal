@@ -3,6 +3,7 @@
 
 import jasperWild from "@/data/projects/jasper-wild-mcpe.json";
 import hyperPayment from "@/data/projects/hyper-payment.json";
+import siteDrift from "@/data/projects/site-drift.json";
 
 export interface TechItem {
   name: string;
@@ -34,6 +35,7 @@ export interface Project {
 export const projects: Project[] = [
   jasperWild as Project,
   hyperPayment as Project,
+  siteDrift as Project,
 ];
 
 export function getProject(slug: string): Project | undefined {

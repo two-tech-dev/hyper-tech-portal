@@ -1,0 +1,28 @@
+{
+  "slug": "site-drift",
+  "title": "SiteDrift",
+  "tagline": "The open-source browser extension to bypass redirects and tracking",
+  "status": "Active",
+  "date": "May 2026",
+  "tags": ["Browser Extension", "Go", "TypeScript", "Privacy"],
+  "color": "#10b981",
+  "overview": "SiteDrift is a privacy-focused browser extension and backend service that helps users bypass redirect links, wait timers, and trackers. It combines a premium, 'hacker-chic' SPA frontend with a high-performance Go backend and Crowd Bypass server to provide a seamless browsing experience across Chrome, Edge, and Firefox.",
+  "problem": "Navigating the web often involves annoying redirect links, forced wait timers, and pervasive tracking that degrade the user experience and compromise privacy.",
+  "solution": "SiteDrift offers a multi-browser extension backed by a unified monorepo infrastructure. It intercepts and bypasses tracking redirects instantly, utilizing a crowdsourced backend (Crowd Bypass) to skip forced wait times.",
+  "techStack": [
+    { "name": "TypeScript", "category": "Language" },
+    { "name": "Go", "category": "Backend" },
+    { "name": "Next.js", "category": "Frontend" },
+    { "name": "Vite", "category": "Build Tool" }
+  ],
+  "highlights": [
+    "Multi-browser support (Chrome, Edge, Firefox)",
+    "Go-based backend for Crowd Bypass",
+    "Unified monorepo architecture",
+    "Premium 'hacker-chic' responsive SPA"
+  ],
+  "links": {
+    "live": null,
+    "github": null
+  }
+}
