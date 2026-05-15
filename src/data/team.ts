@@ -18,7 +18,7 @@ export const teamMembers: TeamMember[] = [
     avatar: "https://cdn.rydenprotocol.xyz/588467093_122233398140155885_6755016248776118242_n.jpg",
     bio: "Founder of 2Tech, passionate about building digital products.",
     skills: ["Leadership", "Product", "Full-Stack"],
-    githubUsername: "harryitz",
+    githubUsername: "0xliam627",
   },
   {
     name: "Trần Thiên Nam",
@@ -26,6 +26,7 @@ export const teamMembers: TeamMember[] = [
     avatar: "https://avatars.githubusercontent.com/u/111500380?s=96&v=4",
     bio: "Co-founder, responsible for strategy and development.",
     skills: ["Strategy", "Backend", "DevOps"],
+    githubUsername: "VennDev",
   },
   {
     name: "Phùng Trung Nhân",
@@ -33,6 +34,7 @@ export const teamMembers: TeamMember[] = [
     avatar: "https://avatars.githubusercontent.com/u/148054296?s=96&v=4",
     bio: "Core member, contributing to team projects.",
     skills: ["Development"],
+    githubUsername: "junggamyeon",
   },
   {
     name: "Trần Huy Bảo",
@@ -40,6 +42,7 @@ export const teamMembers: TeamMember[] = [
     avatar: "https://avatars.githubusercontent.com/u/215422899?s=96&v=4",
     bio: "Operating and coordinating studio projects.",
     skills: ["Operations", "Management"],
+    githubUsername: "CYooBin10",
   },
   {
     name: "Trần Nhựt Phát",
@@ -47,6 +50,7 @@ export const teamMembers: TeamMember[] = [
     avatar: "https://avatars.githubusercontent.com/u/58399779?s=96&v=4",
     bio: "Core member, contributing to team projects.",
     skills: ["Development"],
+    githubUsername: "ClickedTran",
   },
   {
     name: "Rezn1r",
