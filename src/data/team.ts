@@ -15,7 +15,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Nguyễn Viết Hiếu",
     role: "Founder",
-    avatar: "https://cdn.rydenprotocol.xyz/588467093_122233398140155885_6755016248776118242_n.jpg",
+    avatar: "https://avatars.githubusercontent.com/u/70517151?s=96&v=4",
     bio: "Founder of 2Tech, passionate about building digital products.",
     skills: ["Leadership", "Product", "Full-Stack"],
     githubUsername: "0xliam627",
