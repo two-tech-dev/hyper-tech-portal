@@ -52,6 +52,7 @@ export function Hero() {
                     <Button
                         size="lg"
                         className="h-11 px-8 rounded-xl font-semibold shadow-xl shadow-primary/30 bg-primary hover:bg-primary/90"
+                        nativeButton={false}
                         render={<Link href="/projects" />}
                     >
                         View Projects <ArrowRight className="size-4 ml-1" />
@@ -59,7 +60,8 @@ export function Hero() {
                     <Button
                         size="lg"
                         variant="outline"
-                        className="h-11 px-8 rounded-xl font-medium border-white/10 hover:border-primary/40 hover:bg-primary/8 text-foreground/70"
+                        className="h-11 px-8 rounded-xl font-medium border-border hover:border-primary/40 hover:bg-primary/8 text-muted-foreground"
+                        nativeButton={false}
                         render={<Link href="/team" />}
                     >
                         Meet the Team
@@ -67,7 +69,7 @@ export function Hero() {
                 </div>
 
                 {/* Stats row */}
-                <div className="animate-fade-in-up [animation-delay:450ms] flex justify-center gap-8 md:gap-10 pt-4 border-t border-white/6 w-full max-w-xs">
+                <div className="animate-fade-in-up [animation-delay:450ms] flex justify-center gap-8 md:gap-10 pt-4 border-t border-border w-full max-w-xs">
                     {[
                         { value: "4+", label: "Projects" },
                         { value: "2025", label: "Founded" },

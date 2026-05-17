@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
     variable: "--font-sans",
@@ -43,10 +44,21 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased dark`}
+            className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased light`}
+            suppressHydrationWarning
         >
+            <head>
+                {/* Inline script to prevent FOUC — applies stored/system theme before paint */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(){try{var t=localStorage.getItem("2tech-theme");var d=t==="light"?"light":t==="dark"?"dark":"light";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(d);document.documentElement.style.colorScheme=d}catch(e){}})()`,
+                    }}
+                />
+            </head>
             <body className="min-h-full flex flex-col bg-background text-foreground">
-                <TooltipProvider>{children}</TooltipProvider>
+                <ThemeProvider>
+                    <TooltipProvider>{children}</TooltipProvider>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "@/components/theme-provider";
 
 const navLinks = [
     { href: "/projects", label: "Projects" },
@@ -16,12 +17,17 @@ const navLinks = [
 export function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
+    const { resolvedTheme, setTheme } = useTheme();
+
+    const toggleTheme = () => {
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    };
 
     return (
         <>
             <nav className="fixed top-0 left-0 right-0 z-50">
                 <div className="mx-auto mt-3 max-w-5xl px-4">
-                    <div className="flex items-center justify-between h-14 rounded-2xl border border-white/8 bg-background/80 backdrop-blur-md shadow-xl shadow-black/40 px-4">
+                    <div className="flex items-center justify-between h-14 rounded-2xl border border-border bg-background/80 backdrop-blur-md shadow-xl shadow-black/10 dark:shadow-black/40 px-4">
                         {/* Logo wordmark */}
                         <Link
                             href="/"
@@ -33,8 +39,7 @@ export function Navbar() {
                                 alt="2Tech icon"
                                 width={32}
                                 height={32}
-                                className="size-8 object-contain rounded-lg"
-                                style={{ mixBlendMode: "screen" }}
+                                className="size-8 object-contain rounded-lg logo-themed"
                                 priority
                             />
                             <span className="font-bold text-[15px] tracking-tight text-foreground">
@@ -53,7 +58,7 @@ export function Navbar() {
                                         "text-sm font-medium px-3 py-1.5 rounded-lg transition-all duration-200",
                                         pathname === href
                                             ? "bg-primary/20 text-primary"
-                                            : "text-foreground/55 hover:text-foreground hover:bg-white/6",
+                                            : "text-muted-foreground hover:text-foreground hover:bg-foreground/6",
                                     )}
                                 >
                                     {label}
@@ -63,6 +68,18 @@ export function Navbar() {
 
                         {/* Right side */}
                         <div className="flex items-center gap-2">
+                            {/* Theme toggle */}
+                            <button
+                                onClick={toggleTheme}
+                                className="flex items-center justify-center size-9 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 hover:bg-primary/8 transition-all"
+                                aria-label="Toggle theme"
+                            >
+                                {resolvedTheme === "dark" ? (
+                                    <Sun className="size-4" />
+                                ) : (
+                                    <Moon className="size-4" />
+                                )}
+                            </button>
                             <Button
                                 size="sm"
                                 className="hidden md:flex rounded-xl text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25"
@@ -72,7 +89,7 @@ export function Navbar() {
                             {/* Mobile hamburger */}
                             <button
                                 onClick={() => setOpen(!open)}
-                                className="md:hidden flex items-center justify-center size-9 rounded-xl border border-white/10 text-foreground/70 hover:text-foreground hover:border-white/20 transition-all"
+                                className="md:hidden flex items-center justify-center size-9 rounded-xl border border-border text-foreground/70 hover:text-foreground hover:border-primary/40 transition-all"
                                 aria-label="Toggle menu"
                             >
                                 {open ? (
@@ -86,7 +103,7 @@ export function Navbar() {
 
                     {/* Mobile dropdown */}
                     {open && (
-                        <div className="md:hidden mt-2 rounded-2xl border border-white/8 bg-background/90 backdrop-blur-xl shadow-xl shadow-black/40 p-3 flex flex-col gap-1">
+                        <div className="md:hidden mt-2 rounded-2xl border border-border bg-background/90 backdrop-blur-xl shadow-xl shadow-black/10 dark:shadow-black/40 p-3 flex flex-col gap-1">
                             {navLinks.map(({ href, label }) => (
                                 <Link
                                     key={href}
@@ -96,15 +113,15 @@ export function Navbar() {
                                         "text-sm font-medium px-4 py-2.5 rounded-xl transition-all",
                                         pathname === href
                                             ? "bg-primary/20 text-primary"
-                                            : "text-foreground/70 hover:text-foreground hover:bg-white/6",
+                                            : "text-muted-foreground hover:text-foreground hover:bg-foreground/6",
                                     )}
                                 >
                                     {label}
                                 </Link>
                             ))}
-                            <div className="h-px bg-white/8 my-1" />
+                            <div className="h-px bg-border my-1" />
                             <Link
-                                href="mailto:support@2tech.studio"
+                                href="mailto:two-tech-dev@proton.me"
                                 onClick={() => setOpen(false)}
                                 className="text-sm font-semibold px-4 py-2.5 rounded-xl bg-primary/15 text-primary hover:bg-primary/25 transition-all"
                             >

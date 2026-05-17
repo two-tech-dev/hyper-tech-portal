@@ -6,6 +6,7 @@
   "date": "Apr 2026",
   "tags": ["Fintech", "API", "TypeScript", "SaaS"],
   "color": "#dc2626",
+  "icon": "",
   "overview": "Hyper Payment is a lightweight, fast payment gateway designed specifically for digital businesses — gaming credits, SaaS subscriptions, and virtual goods. It provides a clean REST API and a real-time dashboard.",
   "problem": "Generic payment gateways like Stripe are complex to configure for digital goods, especially for gaming and in-app purchases. Developers need something simpler, faster, and purpose-built.",
   "solution": "We built a purpose-specific payment layer with minimal setup, webhook support, an admin dashboard, and fraud detection baked in. Integration takes under 30 minutes.",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import Image from "next/image";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const navLinks = [
     { label: "Projects", href: "/projects" },
@@ -29,113 +30,116 @@ const socialLinks = [
     },
     {
         label: "Email",
-        href: "mailto:support@2tech.studio",
+        href: "mailto:two-tech-dev@proton.me",
         icon: <Mail className="size-4" />,
     },
 ];
 
 export function Footer() {
     return (
-        <footer className="border-t border-white/8 bg-background">
-            <div className="container mx-auto px-5 py-12 max-w-5xl">
-                <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-12">
-                    {/* Brand */}
-                    <div className="flex flex-col gap-4 max-w-xs">
-                        <Link href="/">
-                            <Image
-                                src="/logo.png"
-                                alt="2Tech Studio"
-                                width={120}
-                                height={36}
-                                className="h-9 w-auto object-contain"
-                                style={{ mixBlendMode: "screen" }}
-                            />
-                        </Link>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                            One team. One dream. Building digital experiences —
-                            from Vietnam to the world.
+        <footer className="border-t border-border bg-background">
+            <ScrollReveal>
+                <div className="container mx-auto px-5 py-12 max-w-5xl">
+                    <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-12">
+                        {/* Brand */}
+                        <div className="flex flex-col gap-4 max-w-xs">
+                            <Link href="/">
+                                <Image
+                                    src="/logo-2tech.png"
+                                    alt="2Tech Studio"
+                                    width={120}
+                                    height={36}
+                                    sizes="120px"
+                                    loading="lazy"
+                                    className="h-9 w-auto object-contain logo-themed"
+                                />
+                            </Link>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                One team. One dream. Building digital experiences —
+                                from Vietnam to the world.
+                            </p>
+                            <div className="flex gap-2">
+                                {socialLinks.map(({ label, href, icon }) => (
+                                    <Link
+                                        key={label}
+                                        href={href}
+                                        target={
+                                            href.startsWith("http")
+                                                ? "_blank"
+                                                : undefined
+                                        }
+                                        rel={
+                                            href.startsWith("http")
+                                                ? "noopener noreferrer"
+                                                : undefined
+                                        }
+                                        aria-label={label}
+                                        className="size-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/8 transition-all duration-200"
+                                    >
+                                        {icon}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Links */}
+                        <div className="flex gap-12 md:gap-16">
+                            <div className="flex flex-col gap-3">
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                                    Studio
+                                </p>
+                                {navLinks.map(({ label, href }) => (
+                                    <Link
+                                        key={label}
+                                        href={href}
+                                        className="text-sm text-foreground/60 hover:text-foreground transition-colors"
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                                    Contact
+                                </p>
+                                <Link
+                                    href="mailto:two-tech-dev@proton.me"
+                                    className="text-sm text-foreground/60 hover:text-primary transition-colors"
+                                >
+                                    two-tech-dev@proton.me
+                                </Link>
+                                <Link
+                                    href="https://discord.gg/ExhrFdQWS9"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-foreground/60 hover:text-primary transition-colors"
+                                >
+                                    Discord
+                                </Link>
+                                <Link
+                                    href="https://www.facebook.com/hypertech.studios"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-foreground/60 hover:text-primary transition-colors"
+                                >
+                                    Fanpage
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Bottom bar */}
+                    <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row gap-2 justify-between items-center text-center">
+                        <p className="text-xs text-muted-foreground">
+                            &copy; {new Date().getFullYear()} 2Tech Studio. All
+                            rights reserved.
                         </p>
-                        <div className="flex gap-2">
-                            {socialLinks.map(({ label, href, icon }) => (
-                                <Link
-                                    key={label}
-                                    href={href}
-                                    target={
-                                        href.startsWith("http")
-                                            ? "_blank"
-                                            : undefined
-                                    }
-                                    rel={
-                                        href.startsWith("http")
-                                            ? "noopener noreferrer"
-                                            : undefined
-                                    }
-                                    aria-label={label}
-                                    className="size-9 rounded-xl border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/8 transition-all duration-200"
-                                >
-                                    {icon}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-12 md:gap-16">
-                        <div className="flex flex-col gap-3">
-                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
-                                Studio
-                            </p>
-                            {navLinks.map(({ label, href }) => (
-                                <Link
-                                    key={label}
-                                    href={href}
-                                    className="text-sm text-foreground/60 hover:text-foreground transition-colors"
-                                >
-                                    {label}
-                                </Link>
-                            ))}
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
-                                Contact
-                            </p>
-                            <Link
-                                href="mailto:support@2tech.studio"
-                                className="text-sm text-foreground/60 hover:text-primary transition-colors"
-                            >
-                                support@2tech.studio
-                            </Link>
-                            <Link
-                                href="https://discord.gg/ExhrFdQWS9"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm text-foreground/60 hover:text-primary transition-colors"
-                            >
-                                Discord
-                            </Link>
-                            <Link
-                                href="https://www.facebook.com/hypertech.studios"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm text-foreground/60 hover:text-primary transition-colors"
-                            >
-                                Fanpage
-                            </Link>
-                        </div>
+                        <p className="text-xs text-muted-foreground">
+                            Built with ❤️ by 2Tech Studio
+                        </p>
                     </div>
                 </div>
-
-                {/* Bottom bar */}
-                <div className="mt-10 pt-6 border-t border-white/8 flex flex-col sm:flex-row gap-2 justify-between items-center text-center">
-                    <p className="text-xs text-muted-foreground">
-                        &copy; {new Date().getFullYear()} 2Tech Studio. All
-                        rights reserved.
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                        Built with ❤️ in Vietnam
-                    </p>
-                </div>
-            </div>
+            </ScrollReveal>
         </footer>
     );
 }

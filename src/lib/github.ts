@@ -30,9 +30,9 @@ export async function getOrgContributors(org: string = "two-tech-dev"): Promise<
 
   try {
     // Fetch the list of repositories in the org (including private ones)
-    const reposRes = await fetch(`${GITHUB_API}/orgs/${org}/repos?per_page=100&type=all`, { 
-      headers, 
-      cache: 'no-store' // Disable cache for debugging
+    const reposRes = await fetch(`${GITHUB_API}/orgs/${org}/repos?per_page=100&type=all`, {
+      headers,
+      next: { revalidate: 120 },
     });
     
     if (!reposRes.ok) {
@@ -44,9 +44,9 @@ export async function getOrgContributors(org: string = "two-tech-dev"): Promise<
     console.log(`Successfully fetched ${repos.length} repositories for org ${org}.`);
 
     // Fetch the list of members in the org
-    const membersRes = await fetch(`${GITHUB_API}/orgs/${org}/members?per_page=100`, { 
-      headers, 
-      cache: 'no-store' 
+    const membersRes = await fetch(`${GITHUB_API}/orgs/${org}/members?per_page=100`, {
+      headers,
+      next: { revalidate: 120 },
     });
     
     const contributorMap = new Map<string, Contributor>();
@@ -76,9 +76,9 @@ export async function getOrgContributors(org: string = "two-tech-dev"): Promise<
     await Promise.all(
       repos.map(async (repo: any) => {
         try {
-          const statsRes = await fetch(`${GITHUB_API}/repos/${org}/${repo.name}/contributors?per_page=100`, { 
-            headers, 
-            cache: 'no-store' // Disable cache for debugging
+          const statsRes = await fetch(`${GITHUB_API}/repos/${org}/${repo.name}/contributors?per_page=100`, {
+            headers,
+            next: { revalidate: 120 },
           });
           
           if (!statsRes.ok) {

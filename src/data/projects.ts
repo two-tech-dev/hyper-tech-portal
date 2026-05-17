@@ -23,6 +23,7 @@ export interface Project {
   date: string;
   tags: string[];
   color: string;
+  icon?: string;
   overview: string;
   problem: string;
   solution: string;
