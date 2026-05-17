@@ -253,6 +253,14 @@
     transform: translateY(0);
 }
 
+/* Snappier on mobile — shorter travel, faster transition */
+@media (max-width: 767px) {
+    .scroll-reveal {
+        transform: translateY(12px);
+        transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    }
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     .animate-fade-in-up,

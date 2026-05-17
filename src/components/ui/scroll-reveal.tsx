@@ -15,10 +15,16 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
         const el = ref.current;
         if (!el) return;
 
-        // Skip if user prefers reduced motion
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            el.classList.add("revealed");
+            return;
+        }
 
-        el.style.transitionDelay = `${delay}ms`;
+        // On mobile: smaller delays, lower threshold for snappier feel
+        const isMobile = window.innerWidth < 768;
+        const mobileDelay = isMobile ? Math.min(delay * 0.5, 150) : delay;
+
+        el.style.transitionDelay = `${mobileDelay}ms`;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -27,7 +33,10 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
                     observer.unobserve(el);
                 }
             },
-            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+            {
+                threshold: isMobile ? 0.05 : 0.15,
+                rootMargin: isMobile ? "0px 0px 0px 0px" : "0px 0px -40px 0px",
+            }
         );
 
         observer.observe(el);
