@@ -1,129 +1,72 @@
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 import { projects } from "@/data/projects";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { FadeIn } from "@/components/motion/fade-in";
 
 export function ProjectsHighlight() {
-    const featured = projects.slice(0, 2);
+  return (
+    <section className="max-w-6xl mx-auto px-6 py-24" id="projects">
+      <FadeIn>
+        <Link href="/projects" className="inline-flex items-center gap-2 mb-8 group">
+          <h2 className="text-2xl font-bold text-on-surface group-hover:text-primary transition-colors">
+            Our Projects
+          </h2>
+          <span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">
+            chevron_right
+          </span>
+        </Link>
+      </FadeIn>
 
-    return (
-        <section className="py-24 relative" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
-            <div className="container mx-auto px-4 max-w-5xl">
-                {/* Header */}
-                <ScrollReveal>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-                        <div>
-                            <p className="text-primary font-semibold text-sm tracking-[0.15em] uppercase mb-3">
-                                What we ship
-                            </p>
-                            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                                Featured{" "}
-                                <span className="bg-gradient-to-r from-primary to-red-400 bg-clip-text text-transparent">
-                                    Projects
-                                </span>
-                            </h2>
-                        </div>
-                        <Link
-                            href="/projects"
-                            className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/70 transition-colors shrink-0"
-                        >
-                            View all <ExternalLink className="size-3.5" />
-                        </Link>
-                    </div>
-                </ScrollReveal>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {projects.map((project, i) => (
+          <FadeIn key={project.slug} delay={i * 0.1}>
+            <Link
+              href={`/projects/${project.slug}`}
+              className="group flex gap-4 rounded-[14px] bg-surface-container-low p-4 border border-outline-variant hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-200"
+              style={{ boxShadow: 'var(--shadow-sm)' }}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-md)'}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--shadow-sm)'}
+            >
+              {/* Icon */}
+              <div
+                className="w-16 h-16 shrink-0 rounded-xl flex items-center justify-center overflow-hidden bg-white shadow-sm"
+              >
+                {project.icon ? (
+                  <Image
+                    src={project.icon}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 object-contain"
+                  />
+                ) : (
+                  <span
+                    className="material-symbols-outlined text-3xl text-white"
+                    style={{ fontVariationSettings: "'FILL' 0" }}
+                  >
+                    code
+                  </span>
+                )}
+              </div>
 
-                {/* Project Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {featured.map((project, i) => (
-                        <ScrollReveal key={project.slug} delay={i * 120}>
-                            <Link
-                                href={`/projects/${project.slug}`}
-                                className="group block h-full"
-                            >
-                                <div className="relative h-full rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
-                                    {/* Visual header */}
-                                    <div
-                                        className="relative h-36 w-full overflow-hidden"
-                                        style={{
-                                            background: `linear-gradient(135deg, ${project.color}30, ${project.color}10, transparent)`,
-                                        }}
-                                    >
-                                        {/* Dot pattern overlay */}
-                                        <div
-                                            className="absolute inset-0 opacity-[0.15]"
-                                            style={{
-                                                backgroundImage: `radial-gradient(${project.color} 1px, transparent 1px)`,
-                                                backgroundSize: "16px 16px",
-                                            }}
-                                        />
-                                        {/* Glow */}
-                                        <div
-                                            className="absolute -top-10 -right-10 size-40 rounded-full blur-3xl opacity-30"
-                                            style={{ backgroundColor: project.color }}
-                                        />
-                                        {/* Icon */}
-                                        {project.icon && (
-                                            <div className="absolute bottom-4 right-5 size-14 rounded-xl border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center overflow-hidden shadow-lg">
-                                                <Image
-                                                    src={project.icon}
-                                                    alt={`${project.title} icon`}
-                                                    width={40}
-                                                    height={40}
-                                                    className="object-contain"
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className="p-7">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <span
-                                                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border"
-                                                style={{
-                                                    backgroundColor: `${project.color}15`,
-                                                    color: project.color,
-                                                    borderColor: `${project.color}30`,
-                                                }}
-                                            >
-                                                {project.status}
-                                            </span>
-                                            <span className="text-xs text-muted-foreground">
-                                                {project.date}
-                                            </span>
-                                        </div>
-
-                                        <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-primary transition-colors duration-200">
-                                            {project.title}
-                                        </h3>
-                                        <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                                            {project.tagline}
-                                        </p>
-
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {project.tags.slice(0, 3).map((tag) => (
-                                                <Badge
-                                                    key={tag}
-                                                    variant="secondary"
-                                                    className="rounded-full text-xs px-2.5 bg-muted text-muted-foreground border-0"
-                                                >
-                                                    {tag}
-                                                </Badge>
-                                            ))}
-                                        </div>
-
-                                        <div className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                            View case study{" "}
-                                            <ExternalLink className="size-3.5" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </ScrollReveal>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-on-surface mb-0.5 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-on-surface-variant mb-2">
+                  {project.tags.slice(0, 2).join(" · ")}
+                </p>
+                <p className="text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+                  {project.tagline}
+                </p>
+              </div>
+            </Link>
+          </FadeIn>
+        ))}
+      </div>
+    </section>
+  );
 }

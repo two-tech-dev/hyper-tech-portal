@@ -1,29 +1,29 @@
 {
   "slug": "site-drift",
   "title": "SiteDrift",
-  "tagline": "The open-source browser extension to bypass redirects and tracking",
+  "tagline": "Don't waste your time with compliance. SiteDrift automatically skips annoying link shorteners.",
   "status": "Active",
-  "date": "May 2026",
-  "tags": ["Browser Extension", "Go", "TypeScript", "Privacy"],
+  "date": "2026",
+  "tags": ["Browser Extension", "TypeScript", "Chrome", "Firefox"],
   "color": "#10b981",
-  "icon": "",
-  "overview": "SiteDrift is a privacy-focused browser extension and backend service that helps users bypass redirect links, wait timers, and trackers. It combines a premium, 'hacker-chic' SPA frontend with a high-performance Go backend and Crowd Bypass server to provide a seamless browsing experience across Chrome, Edge, and Firefox.",
-  "problem": "Navigating the web often involves annoying redirect links, forced wait timers, and pervasive tracking that degrade the user experience and compromise privacy.",
-  "solution": "SiteDrift offers a multi-browser extension backed by a unified monorepo infrastructure. It intercepts and bypasses tracking redirects instantly, utilizing a crowdsourced backend (Crowd Bypass) to skip forced wait times.",
+  "icon": "/projects/SiteDrift.png",
+  "overview": "SiteDrift is a universal bypass browser extension that automatically skips annoying link shorteners and compliance pages. Available for Chrome and Firefox, it saves users time by eliminating forced redirects and wait timers.",
+  "problem": "Link shorteners and compliance redirect pages waste users' time with forced wait timers, tracking, and unnecessary clicks before reaching the actual destination.",
+  "solution": "SiteDrift intercepts and bypasses link shorteners automatically as you browse. No manual action needed — it works silently in the background across Chrome and Firefox.",
   "techStack": [
     { "name": "TypeScript", "category": "Language" },
-    { "name": "Go", "category": "Backend" },
-    { "name": "Next.js", "category": "Frontend" },
-    { "name": "Vite", "category": "Build Tool" }
+    { "name": "WebExtension API", "category": "Platform" },
+    { "name": "Chrome", "category": "Browser" },
+    { "name": "Firefox", "category": "Browser" }
   ],
   "highlights": [
-    "Multi-browser support (Chrome, Edge, Firefox)",
-    "Go-based backend for Crowd Bypass",
-    "Unified monorepo architecture",
-    "Premium 'hacker-chic' responsive SPA"
+    "Universal bypass for link shorteners",
+    "Multi-browser support (Chrome, Firefox)",
+    "Zero-config — works automatically",
+    "Open-source and privacy-focused"
   ],
   "links": {
-    "live": null,
-    "github": null
+    "live": "https://sitedrift.2tech.studio/",
+    "github": "https://github.com/two-tech-dev/SiteDrift"
   }
 }

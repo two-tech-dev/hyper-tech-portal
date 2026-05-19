@@ -1,0 +1,29 @@
+{
+  "slug": "endgit",
+  "title": "EndGit",
+  "tagline": "The modern web platform for EndStone — Minecraft Bedrock server management and plugin ecosystem.",
+  "status": "Active",
+  "date": "2026",
+  "tags": ["Minecraft Bedrock", "EndStone", "TypeScript", "Web Platform"],
+  "color": "#6366f1",
+  "icon": "/projects/endgit.png",
+  "overview": "EndGit is the web platform for the EndStone ecosystem — a modern Minecraft Bedrock server framework. It provides a hub for plugin discovery, server management tools, and community resources for Bedrock server operators and plugin developers.",
+  "problem": "The Minecraft Bedrock server ecosystem lacks a centralized, modern platform for discovering plugins, managing servers, and connecting with the developer community.",
+  "solution": "EndGit provides a polished web experience built with TypeScript that serves as the central hub for the EndStone community — making it easy to find plugins, share resources, and manage Bedrock servers.",
+  "techStack": [
+    { "name": "TypeScript", "category": "Language" },
+    { "name": "Next.js", "category": "Framework" },
+    { "name": "EndStone", "category": "Platform" },
+    { "name": "Minecraft Bedrock", "category": "Game" }
+  ],
+  "highlights": [
+    "Modern web platform for EndStone ecosystem",
+    "Plugin discovery and management",
+    "Built for Minecraft Bedrock server operators",
+    "Open-source community hub"
+  ],
+  "links": {
+    "live": "https://endgit.dev",
+    "github": "https://github.com/two-tech-dev/endgit-web"
+  }
+}

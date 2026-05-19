@@ -1,144 +1,110 @@
 "use client";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
-const navLinks = [
+export function Navbar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  const navLinks = [
     { href: "/projects", label: "Projects" },
     { href: "/team", label: "Team" },
     { href: "/contributions", label: "Contributions" },
-];
+    { href: "/socials", label: "Socials" },
+  ];
 
-export function Navbar() {
-    const pathname = usePathname();
-    const [open, setOpen] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+  const isActive = (href: string) => pathname === href;
 
-    const toggleTheme = () => {
-        setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    };
+  return (
+    <>
+      <nav className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-40px)] max-w-4xl z-50">
+        <div className="flex items-center justify-between px-4 sm:px-8 py-2.5 sm:py-3 rounded-full border border-outline-variant bg-surface/80 backdrop-blur-xl" style={{ boxShadow: 'var(--shadow-md)' }}>
+          <Link
+            href="/"
+            className="flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+            onClick={() => setOpen(false)}
+          >
+            <Image
+              src="/logo-2tech.png"
+              alt="2Tech"
+              width={28}
+              height={28}
+              className="size-7 object-contain rounded"
+              priority
+            />
+            <span className="text-base font-bold text-on-surface tracking-tighter">
+              2Tech Studio
+            </span>
+          </Link>
 
-    return (
-        <>
-            <nav className="fixed top-0 left-0 right-0 z-50">
-                <div className="mx-auto mt-3 max-w-5xl px-4">
-                    <div className="flex items-center justify-between h-14 rounded-2xl border border-border bg-background/80 backdrop-blur-md shadow-xl shadow-black/10 dark:shadow-black/40 px-4">
-                        {/* Logo wordmark */}
-                        <Link
-                            href="/"
-                            className="flex items-center gap-2"
-                            onClick={() => setOpen(false)}
-                        >
-                            <Image
-                                src="/logo-2tech.png"
-                                alt="2Tech icon"
-                                width={32}
-                                height={32}
-                                className="size-8 object-contain rounded-lg logo-themed"
-                                priority
-                            />
-                            <span className="font-bold text-[15px] tracking-tight text-foreground">
-                                2Tech
-                                <span className="text-primary">.studio</span>
-                            </span>
-                        </Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={cn(
+                  "transition-all duration-300 hover:scale-105",
+                  isActive(href)
+                    ? "text-primary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary after:shadow-[0_0_8px_rgba(76,214,255,0.6)]"
+                    : "text-on-surface-variant hover:text-on-surface"
+                )}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
 
-                        {/* Desktop nav */}
-                        <div className="hidden md:flex items-center gap-1">
-                            {navLinks.map(({ href, label }) => (
-                                <Link
-                                    key={href}
-                                    href={href}
-                                    className={cn(
-                                        "text-sm font-medium px-3 py-1.5 rounded-lg transition-all duration-200",
-                                        pathname === href
-                                            ? "bg-primary/20 text-primary"
-                                            : "text-muted-foreground hover:text-foreground hover:bg-foreground/6",
-                                    )}
-                                >
-                                    {label}
-                                </Link>
-                            ))}
-                        </div>
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-on-surface-variant hover:text-on-surface transition-colors"
+            aria-label="Toggle menu"
+          >
+            <span className="material-symbols-outlined">
+              {open ? "close" : "menu"}
+            </span>
+          </button>
+        </div>
 
-                        {/* Right side */}
-                        <div className="flex items-center gap-2">
-                            {/* Theme toggle */}
-                            <button
-                                onClick={toggleTheme}
-                                className="flex items-center justify-center size-9 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 hover:bg-primary/8 transition-all"
-                                aria-label="Toggle theme"
-                            >
-                                {resolvedTheme === "dark" ? (
-                                    <Sun className="size-4" />
-                                ) : (
-                                    <Moon className="size-4" />
-                                )}
-                            </button>
-                            <Button
-                                size="sm"
-                                className="hidden md:flex rounded-xl text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25"
-                            >
-                                Contact Us
-                            </Button>
-                            {/* Mobile hamburger */}
-                            <button
-                                onClick={() => setOpen(!open)}
-                                className="md:hidden flex items-center justify-center size-9 rounded-xl border border-border text-foreground/70 hover:text-foreground hover:border-primary/40 transition-all"
-                                aria-label="Toggle menu"
-                            >
-                                {open ? (
-                                    <X className="size-4" />
-                                ) : (
-                                    <Menu className="size-4" />
-                                )}
-                            </button>
-                        </div>
-                    </div>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="md:hidden mt-3 rounded-2xl border border-outline-variant/20 bg-surface/95 backdrop-blur-xl p-4 flex flex-col gap-1"
+            >
+              {navLinks.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "text-sm font-medium px-4 py-2.5 rounded-xl transition-colors",
+                    isActive(href)
+                      ? "text-primary"
+                      : "text-on-surface-variant hover:text-on-surface"
+                  )}
+                >
+                  {label}
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
 
-                    {/* Mobile dropdown */}
-                    {open && (
-                        <div className="md:hidden mt-2 rounded-2xl border border-border bg-background/90 backdrop-blur-xl shadow-xl shadow-black/10 dark:shadow-black/40 p-3 flex flex-col gap-1">
-                            {navLinks.map(({ href, label }) => (
-                                <Link
-                                    key={href}
-                                    href={href}
-                                    onClick={() => setOpen(false)}
-                                    className={cn(
-                                        "text-sm font-medium px-4 py-2.5 rounded-xl transition-all",
-                                        pathname === href
-                                            ? "bg-primary/20 text-primary"
-                                            : "text-muted-foreground hover:text-foreground hover:bg-foreground/6",
-                                    )}
-                                >
-                                    {label}
-                                </Link>
-                            ))}
-                            <div className="h-px bg-border my-1" />
-                            <Link
-                                href="mailto:two-tech-dev@proton.me"
-                                onClick={() => setOpen(false)}
-                                className="text-sm font-semibold px-4 py-2.5 rounded-xl bg-primary/15 text-primary hover:bg-primary/25 transition-all"
-                            >
-                                Contact Us →
-                            </Link>
-                        </div>
-                    )}
-                </div>
-            </nav>
-
-            {/* Tap-outside overlay */}
-            {open && (
-                <div
-                    className="fixed inset-0 z-40 md:hidden"
-                    onClick={() => setOpen(false)}
-                />
-            )}
-        </>
-    );
+      {open && (
+        <div
+          className="fixed inset-0 z-40 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+    </>
+  );
 }

@@ -1,8 +1,7 @@
 // Centralized project data loader — reads from /src/data/projects/*.json
 // To add/edit a project: just modify or add a JSON file in that folder.
 
-import jasperWild from "@/data/projects/jasper-wild-mcpe.json";
-import hyperPayment from "@/data/projects/hyper-payment.json";
+import endgit from "@/data/projects/endgit.json";
 import siteDrift from "@/data/projects/site-drift.json";
 
 export interface TechItem {
@@ -34,8 +33,7 @@ export interface Project {
 
 // Register all projects here — order controls display order
 export const projects: Project[] = [
-  jasperWild as Project,
-  hyperPayment as Project,
+  endgit as Project,
   siteDrift as Project,
 ];
 

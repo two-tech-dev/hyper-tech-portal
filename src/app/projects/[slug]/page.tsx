@@ -1,19 +1,17 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { getProject, projects } from "@/data/projects";
-import { ExternalLink, ArrowLeft, CheckCircle } from "lucide-react";
-import Link from "next/link";
 import type { Metadata } from "next";
-
-interface Props {
-  params: Promise<{ slug: string }>;
-}
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
+}
+
+interface Props {
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -26,116 +24,138 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const statusColors: Record<string, string> = {
-  Live: "bg-emerald-500/15 text-emerald-600 border-emerald-500/30",
-  Beta: "bg-red-500/15 text-red-600 border-red-500/30",
-  WIP: "bg-amber-500/15 text-amber-600 border-amber-500/30",
-};
-
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col pt-20">
       <Navbar />
 
-      {/* Hero band */}
-      <section className="pt-32 pb-16 relative overflow-hidden border-b border-border/60">
+      {/* Hero Banner */}
+      <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}, transparent)` }}
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `linear-gradient(135deg, ${project.color}66, transparent 60%)`,
+          }}
         />
-        <div className="relative container mx-auto px-4 max-w-4xl">
-          {/* Back link */}
+        <div className="max-w-[1280px] mx-auto px-5 md:px-20 py-16 relative z-10">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-on-surface-variant hover:text-primary mb-8 transition-colors"
           >
-            <ArrowLeft className="size-4" /> All Projects
+            <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+            Back to Projects
           </Link>
 
-          {/* Status + Date */}
-          <div className="flex items-center gap-3 mb-5">
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${statusColors[project.status] ?? ""}`}>
-              {project.status}
-            </span>
-            <span className="text-xs text-muted-foreground">{project.date}</span>
+          <div className="flex items-start gap-6">
+            {project.icon && (
+              <div
+                className="w-20 h-20 shrink-0 rounded-2xl flex items-center justify-center overflow-hidden border border-outline-variant/20"
+                style={{
+                  background: `linear-gradient(135deg, ${project.color}cc, ${project.color}44)`,
+                }}
+              >
+                <Image
+                  src={project.icon}
+                  alt={project.title}
+                  width={56}
+                  height={56}
+                  className="w-14 h-14 object-contain"
+                />
+              </div>
+            )}
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                  {project.status}
+                </span>
+                <span className="text-sm text-on-surface-variant">{project.date}</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3">
+                {project.title}
+              </h1>
+              <p className="text-lg text-on-surface-variant max-w-xl">
+                {project.tagline}
+              </p>
+            </div>
           </div>
 
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-            {project.title}
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-            {project.tagline}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          {/* Tags & Links */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="rounded-full px-3 py-1 text-sm">
+              <span
+                key={tag}
+                className="px-3 py-1 rounded-full text-sm text-on-surface-variant bg-surface-container border border-outline-variant/20"
+              >
                 {tag}
-              </Badge>
+              </span>
             ))}
           </div>
 
-          {/* CTA links if any */}
           {(project.links.live || project.links.github) && (
-            <div className="flex gap-3">
+            <div className="mt-6 flex gap-3">
               {project.links.live && (
-                <Button render={<Link href={project.links.live} target="_blank" />} className="rounded-xl">
-                  View Live <ExternalLink className="size-4 ml-1" />
-                </Button>
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#00d1ff] text-black px-5 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition-all shadow-[0_0_15px_rgba(0,209,255,0.3)]"
+                >
+                  <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+                  View Live
+                </a>
               )}
               {project.links.github && (
-                <Button variant="outline" render={<Link href={project.links.github} target="_blank" />} className="rounded-xl">
+                <a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm text-on-surface border border-outline-variant/30 hover:border-primary/50 transition-all"
+                >
+                  <span className="material-symbols-outlined text-[18px]">code</span>
                   Source Code
-                </Button>
+                </a>
               )}
             </div>
           )}
         </div>
       </section>
 
-      {/* Body */}
-      <section className="py-16 flex-1">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-            {/* Main content */}
-            <div className="md:col-span-2 space-y-12">
-              {/* Overview */}
+      {/* Content */}
+      <section className="flex-1 pb-24">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-10">
               <div>
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-4">Overview</h2>
-                <p className="text-foreground/80 leading-relaxed text-base md:text-lg">{project.overview}</p>
+                <h2 className="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Overview</h2>
+                <p className="text-on-surface leading-relaxed">{project.overview}</p>
               </div>
 
-              {/* Problem */}
               <div>
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-4">The Problem</h2>
-                <div className="rounded-2xl border border-border/60 bg-muted/30 p-6">
-                  <p className="text-foreground/80 leading-relaxed">{project.problem}</p>
+                <h2 className="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">The Problem</h2>
+                <div className="rounded-xl bg-surface-container p-6 border border-outline-variant/10">
+                  <p className="text-on-surface leading-relaxed">{project.problem}</p>
                 </div>
               </div>
 
-              {/* Solution */}
               <div>
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-4">Our Solution</h2>
-                <div className="rounded-2xl border border-border/60 bg-muted/30 p-6">
-                  <p className="text-foreground/80 leading-relaxed">{project.solution}</p>
+                <h2 className="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Our Approach</h2>
+                <div className="rounded-xl bg-surface-container p-6 border border-outline-variant/10">
+                  <p className="text-on-surface leading-relaxed">{project.solution}</p>
                 </div>
               </div>
 
-              {/* Highlights */}
               <div>
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-4">Key Highlights</h2>
+                <h2 className="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Highlights</h2>
                 <ul className="space-y-3">
                   {project.highlights.map((h) => (
                     <li key={h} className="flex items-start gap-3">
-                      <CheckCircle className="size-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-foreground/80">{h}</span>
+                      <span className="material-symbols-outlined text-[18px] text-primary mt-0.5 shrink-0">check_circle</span>
+                      <span className="text-on-surface text-sm">{h}</span>
                     </li>
                   ))}
                 </ul>
@@ -143,51 +163,22 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             {/* Sidebar */}
-            <aside className="space-y-8">
-              {/* Tech Stack */}
-              <div className="rounded-2xl border border-border/60 bg-card p-6">
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-5">Tech Stack</h2>
+            <div className="space-y-6">
+              <div className="rounded-xl bg-surface-container p-6 border border-outline-variant/10 sticky top-24">
+                <h2 className="text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Tech Stack</h2>
                 <div className="space-y-3">
                   {project.techStack.map((tech) => (
                     <div key={tech.name} className="flex items-center justify-between">
-                      <span className="font-medium text-sm">{tech.name}</span>
-                      <Badge variant="secondary" className="rounded-full text-xs">{tech.category}</Badge>
+                      <span className="text-sm font-medium text-on-surface">{tech.name}</span>
+                      <span className="text-xs text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">
+                        {tech.category}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Details */}
-              <div className="rounded-2xl border border-border/60 bg-card p-6">
-                <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-5">Details</h2>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Status</span>
-                    <span className="font-medium">{project.status}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Launched</span>
-                    <span className="font-medium">{project.date}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Team</span>
-                    <span className="font-medium">2Tech Studio</span>
-                  </div>
-                </div>
-              </div>
-            </aside>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="py-16 border-t border-border/60">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-2xl font-bold mb-3">Interested in working with us?</h2>
-          <p className="text-muted-foreground mb-6">We&apos;re always open to new ideas and collaborations.</p>
-          <Button render={<Link href="mailto:hello@2tech.studio" />} className="rounded-xl px-8 h-11">
-            Get in touch
-          </Button>
         </div>
       </section>
 
