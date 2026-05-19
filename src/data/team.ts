@@ -37,6 +37,14 @@ export const teamMembers: TeamMember[] = [
     githubUsername: "junggamyeon",
   },
   {
+    name: "Rezn1r",
+    role: "Moderator",
+    avatar: "https://avatars.githubusercontent.com/u/110711560?v=4",
+    bio: "Core member, contributing to team projects.",
+    skills: ["Development"],
+    githubUsername: "Rezn1r",
+  },
+  {
     name: "Trần Huy Bảo",
     role: "Operator",
     avatar: "https://avatars.githubusercontent.com/u/215422899?s=96&v=4",
@@ -51,14 +59,6 @@ export const teamMembers: TeamMember[] = [
     bio: "Core member, contributing to team projects.",
     skills: ["Development"],
     githubUsername: "ClickedTran",
-  },
-  {
-    name: "Rezn1r",
-    role: "Member",
-    avatar: "https://avatars.githubusercontent.com/u/110711560?v=4",
-    bio: "Core member, contributing to team projects.",
-    skills: ["Development"],
-    githubUsername: "Rezn1r",
   },
 ];
 
