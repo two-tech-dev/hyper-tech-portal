@@ -1,74 +1,7 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: modern-minimal · macrostructure: People Grid · design-system: design.md · designed-as-app */
 "use client";
 
+import { useLocale } from "@/components/i18n/LocaleProvider";
 import { teamMembers } from "@/data/team";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
-import { FadeIn } from "@/components/motion/fade-in";
-
-export default function TeamPage() {
-  return (
-    <main className="flex min-h-screen flex-col pt-20">
-      <Navbar />
-
-      <div className="flex-grow max-w-[1280px] mx-auto px-4 sm:px-5 md:px-20 w-full mt-4 mb-24">
-        <FadeIn>
-          <header className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3">
-              The team
-            </h1>
-            <p className="text-base text-on-surface-variant max-w-lg">
-              A small group that moves fast and ships things people actually use.
-            </p>
-          </header>
-        </FadeIn>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {teamMembers.map((member, i) => (
-            <FadeIn key={member.name} delay={i * 0.08}>
-              <a
-                href={member.githubUsername ? `https://github.com/${member.githubUsername}` : undefined}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-[14px] bg-surface-container-low p-6 border border-outline-variant hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-200 block h-full"
-              style={{ boxShadow: 'var(--shadow-sm)' }}
-              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.boxShadow = 'var(--shadow-md)'}
-              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.boxShadow = 'var(--shadow-sm)'}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
-                    className="w-12 h-12 rounded-full object-cover border border-outline-variant/20 shrink-0"
-                  />
-                  <div>
-                    <h3 className="text-base font-semibold text-on-surface">{member.name}</h3>
-                    <span className="text-sm text-on-surface-variant">{member.role}</span>
-                  </div>
-                </div>
-                {member.bio && (
-                  <p className="text-sm text-on-surface-variant leading-relaxed mb-3">{member.bio}</p>
-                )}
-                {member.skills && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {member.skills.map(s => (
-                      <span key={s} className="px-2 py-0.5 rounded text-xs text-on-surface-variant bg-surface-container-highest/50">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {member.githubUsername && (
-                  <div className="mt-3 text-sm text-on-surface-variant group-hover:text-primary transition-colors">
-                    @{member.githubUsername}
-                  </div>
-                )}
-              </a>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-
-      <Footer />
-    </main>
-  );
-}
+export default function TeamPage() { const { t } = useLocale(); return <><header className="site-wrap pb-12 pt-12 sm:pb-16 sm:pt-20"><p className="eyebrow">{t("teamEyebrow")}</p><h1 className="display mt-5 max-w-4xl text-[clamp(3rem,8vw,6rem)]">{t("teamTitle")}</h1><p className="lead mt-6 max-w-xl">{t("teamDescription")}</p></header><section className="site-wrap site-section pt-0"><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{teamMembers.map((member) => <a key={member.name} href={member.githubUsername ? `https://github.com/${member.githubUsername}` : undefined} target="_blank" rel="noopener noreferrer" className="surface card-lift group p-5 sm:p-6"><div className="flex items-center gap-4"><img src={member.avatar} alt={member.name} className="size-14 rounded-full object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0" /><div className="min-w-0"><h2 className="truncate text-base font-bold tracking-[-0.03em]">{member.name}</h2><p className="mt-1 text-sm text-[var(--color-accent-hover)]">{member.role}</p></div></div>{member.bio && <p className="mt-5 text-sm leading-6 text-[var(--color-ink-muted)]">{member.bio}</p>}<div className="mt-5 flex flex-wrap gap-2">{member.skills?.map((skill) => <span className="tag" key={skill}>{skill}</span>)}</div>{member.githubUsername && <p className="mt-6 text-sm font-semibold text-[var(--color-accent-hover)]">@{member.githubUsername} ↗</p>}</a>)}</div></section></> }

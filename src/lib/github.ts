@@ -1,6 +1,8 @@
 import "server-only";
+import { teamMembers } from "@/data/team";
 
 const GITHUB_API = "https://api.github.com";
+const teamLogins = new Set(teamMembers.map((member) => member.githubUsername?.trim().toLowerCase()).filter((login): login is string => Boolean(login)));
 
 export interface Contributor {
   login: string;
@@ -13,14 +15,8 @@ export async function getOrgContributors(org: string = "two-tech-dev"): Promise<
   const token = process.env.GITHUB_TOKEN;
   
   if (!token) {
-    console.warn("GITHUB_TOKEN is missing. Returning mock data.");
-    return [
-      { login: "harryitz", avatar_url: "https://avatars.githubusercontent.com/u/1?v=4", html_url: "https://github.com/harryitz", contributions: 1240 },
-      { login: "jaspert", avatar_url: "https://avatars.githubusercontent.com/u/2?v=4", html_url: "https://github.com/jaspert", contributions: 856 },
-      { login: "dev3", avatar_url: "https://avatars.githubusercontent.com/u/3?v=4", html_url: "https://github.com/dev3", contributions: 432 },
-      { login: "contributor4", avatar_url: "https://avatars.githubusercontent.com/u/4?v=4", html_url: "https://github.com/contributor4", contributions: 120 },
-      { login: "coder5", avatar_url: "https://avatars.githubusercontent.com/u/5?v=4", html_url: "https://github.com/coder5", contributions: 45 },
-    ];
+    console.warn("GITHUB_TOKEN is missing. Returning no contribution data.");
+    return [];
   }
 
   const headers = {
@@ -116,13 +112,8 @@ export async function getOrgContributors(org: string = "two-tech-dev"): Promise<
       })
     );
 
-    // Filter to only include organization members (if we successfully fetched them)
-    let finalContributors = Array.from(contributorMap.values());
-    if (orgMemberLogins.size > 0) {
-      finalContributors = finalContributors.filter(c => orgMemberLogins.has(c.login.toLowerCase()));
-    }
-
-    // Sort by commit count in descending order
+    // Only display people present in studio team data, never GitHub/mock accounts.
+    const finalContributors = Array.from(contributorMap.values()).filter((contributor) => teamLogins.has(contributor.login.trim().toLowerCase()));
     return finalContributors.sort((a, b) => b.contributions - a.contributions);
   } catch (error) {
     console.error("Error fetching GitHub stats:", error);

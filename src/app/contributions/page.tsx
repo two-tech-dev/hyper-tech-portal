@@ -1,25 +1,7 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: modern-minimal · macrostructure: Activity Board · design-system: design.md · designed-as-app */
 "use client";
 
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
-import { ContributorGrid } from "@/components/sections/ContributorGrid";
-
-export default function ContributionsPage() {
-  return (
-    <main className="flex min-h-screen flex-col pt-20">
-      <Navbar />
-      <div className="flex-grow max-w-[1280px] mx-auto px-4 sm:px-5 md:px-20 w-full mt-4 mb-24">
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3">
-            GitHub Contributions
-          </h1>
-          <p className="text-base text-on-surface-variant max-w-2xl">
-            Tracking engineering excellence and open-source impact across the 2Tech Studio ecosystem.
-          </p>
-        </header>
-        <ContributorGrid />
-      </div>
-      <Footer />
-    </main>
-  );
-}
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { ContributionsBoard } from "@/components/site/ContributionsBoard";
+export default function ContributionsPage() { const { t } = useLocale(); return <><header className="site-wrap pb-12 pt-12 sm:pb-16 sm:pt-20"><p className="eyebrow">{t("navOpenSource")} / {t("activity")}</p><h1 className="display mt-5 max-w-4xl text-[clamp(3rem,8vw,6rem)]">{t("contributionsTitle")}</h1><p className="lead mt-6 max-w-2xl">{t("contributionsDescription")}</p></header><section className="site-wrap site-section pt-0"><div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow">{t("contribBoard")}</p><h2 className="mt-2 text-2xl font-bold tracking-[-0.04em]">{t("contribPeople")}</h2></div><a href="https://github.com/two-tech-dev" target="_blank" rel="noopener noreferrer" className="text-link text-sm">{t("contribGithub")}</a></div><ContributionsBoard /></section></> }

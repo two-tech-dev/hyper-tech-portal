@@ -1,0 +1,50 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: modern-minimal · theme: Modern Local Studio · design-system: design.md · designed-as-app */
+:root {
+  --color-canvas: oklch(97.5% 0.012 80);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-soft: oklch(95.5% 0.018 238);
+  --color-surface-warm: oklch(94.5% 0.035 53);
+  --color-ink: oklch(25% 0.035 252);
+  --color-ink-muted: oklch(50% 0.03 252);
+  --color-border: oklch(89% 0.018 244);
+  --color-accent: oklch(63% 0.19 38);
+  --color-accent-hover: oklch(57% 0.2 36);
+  --color-accent-soft: oklch(93% 0.045 43);
+  --color-positive: oklch(55% 0.13 151);
+  --color-positive-soft: oklch(93% 0.04 151);
+  --color-focus: oklch(57% 0.19 254);
+  --color-on-accent: oklch(100% 0 0);
+  --color-discord: oklch(58% 0.19 278);
+  --color-facebook: oklch(55% 0.2 257);
+  --color-social-dark: oklch(25% 0.035 252);
+  --color-youtube: oklch(60% 0.2 32);
+
+  --font-display: var(--font-be-vietnam), system-ui, sans-serif;
+  --font-body: var(--font-be-vietnam), system-ui, sans-serif;
+  --font-utility: var(--font-jetbrains), ui-monospace, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --content: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 0.5rem 1.5rem oklch(25% 0.035 252 / 0.06);
+  --shadow-md: 0 1.25rem 3.5rem oklch(25% 0.035 252 / 0.1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 480ms;
+}
