@@ -1,25 +1,5 @@
-"use client";
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: modern-minimal · macrostructure: Friendly Studio Landing · design-system: design.md · designed-as-app */
+import { HomeContent } from "@/components/pages/HomeContent";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useLocale } from "@/components/i18n/LocaleProvider";
-import { projects } from "@/data/projects";
-import { teamMembers } from "@/data/team";
-
-export default function Home() {
-  const { t } = useLocale();
-  const [featured, ...rest] = projects;
-  return <>
-    <section className="site-wrap grid gap-12 pb-16 pt-12 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
-      <div><div className="eyebrow flex items-center gap-2"><span className="size-2 rounded-full bg-[var(--color-positive)]" />{t("homeEyebrow")}</div><h1 className="display mt-6 max-w-3xl text-[clamp(3.2rem,8vw,6.5rem)]">{t("homeTitle")}</h1><p className="lead mt-7 max-w-xl">{t("homeDescription")}</p><div className="mt-8 flex flex-wrap items-center gap-3"><Link href="/projects" className="primary-button">{t("homeWork")} <span aria-hidden="true">↗</span></Link><Link href="/team" className="text-link">{t("homeTeam")} <span aria-hidden="true" className="ml-1">→</span></Link></div></div><figure className="soft-surface overflow-hidden p-5 sm:p-8"><div className="flex items-center justify-between text-xs font-medium text-[var(--color-ink-muted)]"><span>{t("homeStudioView")}</span><span>01—04</span></div><Image src="/images/hero-teamwork.png" alt="2Tech Studio team collaborating" width={548} height={417} className="mt-8 w-full object-contain" priority /><figcaption className="mt-5 border-t border-[var(--color-border)] pt-4 text-sm text-[var(--color-ink-muted)]">{t("homeCaption")}</figcaption></figure>
-    </section>
-
-    <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)]"><div className="site-wrap grid gap-6 py-6 sm:grid-cols-3 sm:gap-0">{[[projects.length, t("homeProjects")], [teamMembers.length, t("homePeople")], ["120s", t("homeRefresh")]].map(([value, label]) => <div key={label} className="border-l-2 border-[var(--color-accent-soft)] pl-4 sm:mx-4 first:ml-0"><strong className="text-2xl font-bold tracking-[-0.04em]">{value}</strong><p className="mt-1 text-sm text-[var(--color-ink-muted)]">{label}</p></div>)}</div></section>
-
-    <section className="site-wrap site-section"><div className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow">{t("selectedWork")}</p><h2 className="display mt-3 text-4xl sm:text-5xl">{t("builtCare")}</h2></div><Link href="/projects" className="text-link">{t("allProjects")} →</Link></div><div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">{featured && <Link href={`/projects/${featured.slug}`} className="surface card-lift group overflow-hidden"><div className="flex min-h-72 items-center justify-center bg-[var(--color-surface-soft)] p-10"><Image src={featured.icon || "/logo-2tech.png"} alt={`${featured.title} logo`} width={260} height={260} className="size-52 object-contain transition-transform duration-500 group-hover:scale-105" /></div><div className="p-6"><div className="flex items-center justify-between gap-3"><span className="status">{featured.status}</span><span className="text-xs text-[var(--color-ink-muted)]">{featured.date}</span></div><h3 className="mt-4 text-3xl font-bold tracking-[-0.05em] group-hover:text-[var(--color-accent-hover)]">{featured.title}</h3><p className="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">{featured.tagline}</p></div></Link>}<div className="flex flex-col gap-5">{rest.map((project) => <Link href={`/projects/${project.slug}`} key={project.slug} className="surface card-lift flex min-h-52 items-center gap-5 p-5 sm:p-6"><div className="flex size-24 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-soft)] p-3"><Image src={project.icon || "/logo-2tech.png"} alt="" width={80} height={80} className="size-full object-contain" /></div><div className="min-w-0"><span className="status">{project.status}</span><h3 className="mt-3 text-xl font-bold tracking-[-0.04em]">{project.title}</h3><p className="mt-1 line-clamp-2 text-sm leading-6 text-[var(--color-ink-muted)]">{project.tagline}</p></div><span className="ml-auto text-xl text-[var(--color-accent)]">↗</span></Link>)}</div></div></section>
-
-    <section className="site-wrap grid gap-8 border-t border-[var(--color-border)] py-16 sm:py-20 md:grid-cols-[0.8fr_1.2fr] md:items-start"><div><p className="eyebrow">{t("howWork")}</p><h2 className="display mt-3 text-4xl sm:text-5xl">{t("clearSteps")}</h2></div><div className="grid gap-3 sm:grid-cols-3">{[["01", t("frame"), t("frameDescription")], ["02", t("build"), t("buildDescription")], ["03", t("ship"), t("shipDescription")]].map(([number, title, text]) => <div key={number} className="rounded-[var(--radius-md)] bg-[var(--color-surface)] p-5"><span className="eyebrow">{number}</span><h3 className="mt-8 font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-[var(--color-ink-muted)]">{text}</p></div>)}</div></section>
-
-    <section className="site-wrap pb-16 sm:pb-24"><div className="grid gap-6 rounded-[var(--radius-lg)] bg-[var(--color-accent-soft)] p-7 sm:p-12 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow">{t("contactEyebrow")}</p><h2 className="display mt-4 max-w-2xl text-4xl sm:text-6xl">{t("contactTitle")}</h2><p className="lead mt-5 max-w-xl text-sm">{t("contactDescription")}</p></div><a href="mailto:two-tech-dev@proton.me" className="primary-button">{t("startProject")} <span aria-hidden="true">↗</span></a></div></section>
-  </>;
-}
+export default function HomePage() { return <HomeContent />; }

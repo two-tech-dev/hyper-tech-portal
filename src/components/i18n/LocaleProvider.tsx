@@ -11,9 +11,11 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     const detected = isLocale(stored) ? stored : Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Ho_Chi_Minh" ? "vi" : DEFAULT_LOCALE;
-    setLocaleState(detected);
-    document.documentElement.lang = detected;
-    document.documentElement.dataset.localeReady = "true";
+    queueMicrotask(() => {
+      setLocaleState(detected);
+      document.documentElement.lang = detected;
+      document.documentElement.dataset.localeReady = "true";
+    });
   }, []);
   const setLocale = (next: Locale) => { setLocaleState(next); window.localStorage.setItem(STORAGE_KEY, next); document.documentElement.lang = next; };
   const value = useMemo(() => ({ locale, setLocale, t: (key: TranslationKey) => translate(locale, key) }), [locale]);

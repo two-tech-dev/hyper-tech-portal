@@ -1,0 +1,11 @@
+"use client";
+
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import type { TranslationKey } from "@/lib/i18n";
+
+const channels: [string, string, TranslationKey, string, string][] = [["Discord", "2Tech's Hangout", "socialDiscord", "https://discord.gg/SBrjVSjA6M", "var(--color-discord)"], ["Facebook", "HyperTech Studios", "socialFacebook", "https://facebook.com/hypertech.studios", "var(--color-facebook)"], ["X", "@TwoTechDev", "socialX", "https://x.com/TwoTechDev", "var(--color-social-dark)"], ["YouTube", "2Tech Studio", "socialYouTube", "https://www.youtube.com/@2tech.studio", "var(--color-youtube)"]];
+
+export function SocialsContent() {
+  const { t } = useLocale();
+  return <><header className="site-wrap pb-12 pt-12 sm:pb-16 sm:pt-20"><p className="eyebrow">{t("socialEyebrow")}</p><h1 className="display mt-5 max-w-4xl text-[clamp(3rem,8vw,6rem)]">{t("socialTitle")}</h1><p className="lead mt-6 max-w-xl">{t("socialDescription")}</p></header><section className="site-wrap site-section pt-0"><div className="grid gap-4 sm:grid-cols-2">{channels.map(([name, title, descKey, href, color]) => <a key={name} href={href} target="_blank" rel="noopener noreferrer" className="surface card-lift group flex min-h-48 flex-col justify-between p-6"><div className="flex items-start justify-between"><span className="flex size-11 items-center justify-center rounded-[var(--radius-sm)] text-white" style={{ backgroundColor: color }} aria-hidden="true">{name === "X" ? "𝕏" : name[0]}</span><span className="text-xl text-[var(--color-accent)] transition-transform group-hover:translate-x-1">↗</span></div><div><p className="text-sm text-[var(--color-ink-muted)]">{name}</p><h2 className="mt-1 text-xl font-bold tracking-[-0.04em] group-hover:text-[var(--color-accent-hover)]">{title}</h2><p className="mt-1 text-sm text-[var(--color-ink-muted)]">{t(descKey)}</p></div></a>)}</div></section></>;
+}

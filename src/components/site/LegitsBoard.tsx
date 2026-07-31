@@ -9,6 +9,7 @@ import { ImageLightbox } from "@/components/site/ImageLightbox";
 function Message({ message }: { message: LegitsMessage }) {
   const { locale, t } = useLocale();
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [lightboxTrigger, setLightboxTrigger] = useState<HTMLButtonElement | null>(null);
   const date = new Intl.DateTimeFormat(locale === "vi" ? "vi-VN" : "en-US", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -16,7 +17,7 @@ function Message({ message }: { message: LegitsMessage }) {
   const images = message.attachments;
 
   return (
-    <article className="legits-message group flex gap-3 border-b border-[var(--color-border)] px-2 py-5 transition-colors hover:bg-[var(--color-surface-soft)] sm:gap-4 sm:px-4">
+    <article className="legits-message group flex gap-2 border-b border-[var(--color-border)] p-3 transition-colors hover:bg-[var(--color-surface-soft)] sm:gap-3 sm:p-4">
       {/* avatar */}
       <div className="size-9 shrink-0 overflow-hidden rounded-full bg-[var(--color-surface-soft)] ring-1 ring-[var(--color-border)]">
         {message.author.avatarUrl ? (
@@ -70,7 +71,7 @@ function Message({ message }: { message: LegitsMessage }) {
               <button
                 type="button"
                 key={attachment.id}
-                onClick={() => setLightbox(index)}
+                onClick={(event) => { setLightboxTrigger(event.currentTarget); setLightbox(index); }}
                 className="relative h-24 w-32 overflow-hidden rounded-[var(--radius-sm)] bg-[var(--color-surface-soft)] ring-1 ring-[var(--color-border)] transition-[transform,filter] hover:scale-[1.02] hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[var(--color-focus)] sm:h-28 sm:w-40"
                 aria-label={`${t("legitsAttachment")}: ${attachment.filename}`}
               >
@@ -122,6 +123,7 @@ function Message({ message }: { message: LegitsMessage }) {
         <ImageLightbox
           images={images}
           index={lightbox}
+          returnFocus={lightboxTrigger}
           onClose={() => setLightbox(null)}
           onChange={setLightbox}
         />
@@ -152,7 +154,7 @@ export function LegitsBoard() {
           `/api/legits?limit=15${before ? `&before=${encodeURIComponent(before)}` : ""}`,
         );
         const payload = await response.json();
-        if (!response.ok) throw new Error(payload.error?.message || t("legitsUnavailable"));
+        if (!response.ok) throw new Error(t("legitsUnavailable"));
         const page = payload as LegitsPage;
         const fresh = page.messages.filter((m) => !seen.current.has(m.id));
         fresh.forEach((m) => seen.current.add(m.id));
@@ -174,7 +176,7 @@ export function LegitsBoard() {
   }, [load]);
 
   return (
-    <div className="min-w-0 max-w-4xl">
+    <div className="min-w-0 max-w-[55rem]">
       <div
         onScroll={(event) => {
           const node = event.currentTarget;
